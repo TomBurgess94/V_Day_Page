@@ -1,0 +1,27 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: #EEAECA;
+  background: radial-gradient(circle,rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+  .center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 800px;
+    font-family: "Dancing Script", cursive;
+    font-size: 500%;
+    color: white;
+  }
+}
+
+
+
+nav a {
+  color: white;
+  margin-right: 1rem;
+  text-decoration: none;
+}
+
+main {
+  padding: 2rem;
+}

@@ -53,64 +53,48 @@ body {
 }
 
 
-.treason{
-  background: red;
-  transition: background 1000ms linear;
-  .buttons {
-    opacity: 0;
-    pointer-events: none;
-  }
-  .center {
-    opacity: 0;
-  }
-
+#videoContainer {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  display: none; 
+  /* Give the container a solid starting size */
+  width: 560px;
+  height: 315px;
+  background: black; 
+  border: 2px solid white;
+  box-shadow: 0 0 30px rgba(0,0,0,0.7);
 }
 
-.video-style {
-  margin-top: 20px;
-  border: 5px solid pink;
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-  animation: popIn 0.5s ease-out;
+#videoContainer iframe {
+  width: 100%;
+  height: 100%;
 }
 
-@keyframes popIn {
-  0% { transform: scale(0); opacity: 0; }
-  100% { transform: scale(1); opacity: 1; }
+.show-video {
+  display: block !important;
 }
 
-/* .buttonYes {
-    background-color: pink;
-    border: none;
-    color: white;
-    padding: 16px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    transition-duration: 0.4s;
-    cursor: pointer;
-    position: absolute;
-    top: 50%;
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-.buttonNo {
-    background-color: red;
-    border: none;
-    color: white;
-    padding: 16px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    transition-duration: 0.4s;
-    cursor: pointer;
-} */
+/* Ensure the red background from 'treason' doesn't swallow everything */
+.treason {
+  background-image: none;
+  background-color: red !important;
+}
+
+/* Optional: Hide the text so the video is the focus */
+.treason p, .treason .buttons {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s;
+}
+
 
 main {
   padding: 2rem;

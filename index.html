@@ -18,15 +18,7 @@
       </div>
   </div>
 </div>
-<div id="videoContainer" style="opacity: 0; height: 0; overflow: hidden; transition: opacity 0.5s;">
-  <iframe 
-    id="ytPlayer"
-    width="560" 
-    height="315"
-    src="https://www.youtube.com/embed/LqP5cXGESgk" 
-    frameborder="0" 
-    allow="autoplay; encrypted-media">
-  </iframe>
+<div id="videoContainer" >
 </div>
   <script>
     let count = 0;
@@ -46,17 +38,36 @@ noBtn.addEventListener("mouseover", function () {
   noBtn.style.transform = `translate(${moveX}px, ${moveY}px)`;
 });
 
-  function increment() {
-    count++
-    if (count===3) {
-      document.body.classList.add("treason");
-      const videoBox = document.getElementById("videoContainer");
-      videoBox.style.opacity = "1";
-      videoBox.style.height = "auto";
-      const player = document.getElementById("ytPlayer");
-      player.src += "";
+function increment() {
+  count++;
+  console.log("Count is: " + count);
+
+  if (count === 3) {
+    // 1. Turn the background red
+    document.body.classList.add("treason");
+
+    // 2. Show the container
+    const videoBox = document.getElementById("videoContainer");
+    videoBox.classList.add("show-video");
+
+    // 3. Create the iframe ONLY if it doesn't exist yet
+    if (videoBox.innerHTML === "") {
+      const iframe = document.createElement("iframe");
+      
+      // We MUST use &mute=1 and &autoplay=1 together
+      const videoID = "R3oSAVwcD4U"; 
+      iframe.src = `https://www.youtube.com/embed/${videoID}?autoplay=1&mute=1&enablejsapi=1`;
+      
+      iframe.width = "560";
+      iframe.height = "315";
+      iframe.frameBorder = "0";
+      iframe.allow = "autoplay; encrypted-media";
+      iframe.allowFullscreen = true;
+
+      videoBox.appendChild(iframe);
     }
   }
+}
   </script>
 
 </body>

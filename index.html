@@ -6,10 +6,58 @@
   <link rel="stylesheet" href="styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
 </head>
+
 <body>
-  <div class="center"
-    <p> Will you be my Valentine? </p>
+  <div class="center">
+    <div>
+      <p> Will you be my Valentine? </p>
+
+      <div class="buttons">
+        <button class="btnNo">No </button>
+        <button class="btnYes">Yes </button>
+      </div>
+  </div>
 </div>
+<div id="videoContainer" style="opacity: 0; height: 0; overflow: hidden; transition: opacity 0.5s;">
+  <iframe 
+    id="ytPlayer"
+    width="560" 
+    height="315"
+    src="https://www.youtube.com/embed/LqP5cXGESgk" 
+    frameborder="0" 
+    allow="autoplay; encrypted-media">
+  </iframe>
+</div>
+  <script>
+    let count = 0;
+    const noBtn = document.querySelector(".btnNo");
+
+noBtn.addEventListener("mouseover", function () {
+    increment();
+  const btnWidth = noBtn.offsetWidth;
+  const btnHeight = noBtn.offsetHeight;
+
+  const maxX = window.innerWidth - btnWidth;
+  const maxY = window.innerHeight - btnHeight;
+
+  const moveX = (Math.random() - 0.5) * maxX;
+  const moveY = (Math.random() - 0.5) * maxY;
+
+  noBtn.style.transform = `translate(${moveX}px, ${moveY}px)`;
+});
+
+  function increment() {
+    count++
+    if (count===3) {
+      document.body.classList.add("treason");
+      const videoBox = document.getElementById("videoContainer");
+      videoBox.style.opacity = "1";
+      videoBox.style.height = "auto";
+      const player = document.getElementById("ytPlayer");
+      player.src += "";
+    }
+  }
+  </script>
 
 </body>
 </html>

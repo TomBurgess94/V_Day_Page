@@ -1,26 +1,116 @@
 body {
   margin: 0;
   padding: 0;
-  background: #EEAECA;
   background: radial-gradient(circle,rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
-  .center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 800px;
-    font-family: "Dancing Script", cursive;
-    font-size: 500%;
-    color: white;
-  }
 }
-
-
-
-nav a {
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 800px;
+  font-family: "Dancing Script", cursive;
+  font-size: 500%;
   color: white;
-  margin-right: 1rem;
-  text-decoration: none;
 }
+
+.buttons {
+  display: flex;
+  gap: 250px;
+  margin-top: 40px;
+  justify-content: center;
+  align-items: center;
+}
+
+.btnYes{
+  border-radius: 4px;
+  background-color: red;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  width: 100px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.btnNo{
+  border-radius: 4px;
+  background-color: black;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  width: 100px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+
+.treason{
+  background: red;
+  transition: background 1000ms linear;
+  .buttons {
+    opacity: 0;
+    pointer-events: none;
+  }
+  .center {
+    opacity: 0;
+  }
+
+}
+
+.video-style {
+  margin-top: 20px;
+  border: 5px solid pink;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  animation: popIn 0.5s ease-out;
+}
+
+@keyframes popIn {
+  0% { transform: scale(0); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* .buttonYes {
+    background-color: pink;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.buttonNo {
+    background-color: red;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+} */
 
 main {
   padding: 2rem;

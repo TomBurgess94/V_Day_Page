@@ -18,55 +18,53 @@
       </div>
   </div>
 </div>
-<div id="videoContainer" >
+<div id="videoContainer"></div>
 </div>
   <script>
     let count = 0;
-    const noBtn = document.querySelector(".btnNo");
+const noBtn = document.querySelector(".btnNo");
 
 noBtn.addEventListener("mouseover", function () {
-    increment();
-  const btnWidth = noBtn.offsetWidth;
-  const btnHeight = noBtn.offsetHeight;
+  // Only move the button if count is less than 3
+  if (count < 3) {
+    count++;
+    
+    const maxX = window.innerWidth - noBtn.offsetWidth;
+    const maxY = window.innerHeight - noBtn.offsetHeight;
 
-  const maxX = window.innerWidth - btnWidth;
-  const maxY = window.innerHeight - btnHeight;
+    const moveX = Math.random() * maxX;
+    const moveY = Math.random() * maxY;
 
-  const moveX = (Math.random() - 0.5) * maxX;
-  const moveY = (Math.random() - 0.5) * maxY;
-
-  noBtn.style.transform = `translate(${moveX}px, ${moveY}px)`;
+    noBtn.style.position = "fixed";
+    noBtn.style.left = moveX + "px";
+    noBtn.style.top = moveY + "px";
+  }
 });
 
-function increment() {
-  count++;
-  console.log("Count is: " + count);
-
-  if (count === 3) {
-    // 1. Turn the background red
-    document.body.classList.add("treason");
-
-    // 2. Show the container
-    const videoBox = document.getElementById("videoContainer");
-    videoBox.classList.add("show-video");
-
-    // 3. Create the iframe ONLY if it doesn't exist yet
-    if (videoBox.innerHTML === "") {
-      const iframe = document.createElement("iframe");
-      
-      // We MUST use &mute=1 and &autoplay=1 together
-      const videoID = "R3oSAVwcD4U"; 
-      iframe.src = `https://www.youtube.com/embed/${videoID}?autoplay=1&mute=1&enablejsapi=1`;
-      
-      iframe.width = "560";
-      iframe.height = "315";
-      iframe.frameBorder = "0";
-      iframe.allow = "autoplay; encrypted-media";
-      iframe.allowFullscreen = true;
-
-      videoBox.appendChild(iframe);
-    }
+// The "Final Trap" Click
+noBtn.addEventListener("click", function () {
+  if (count >= 3) {
+    triggerTreason();
   }
+});
+
+function triggerTreason() {
+  // 1. Theme Change
+  document.body.classList.add("treason");
+
+  // 2. Show Container
+  const videoBox = document.getElementById("videoContainer");
+  videoBox.classList.add("show-video");
+
+  // 3. Inject Video with SOUND (mute=0)
+  // Since they clicked the button, the browser allows sound!
+  const videoID = "R3oSAVwcD4U";
+  videoBox.innerHTML = `
+    <iframe 
+      width="560" height="315" 
+      src="https://www.youtube.com/embed/${videoID}?autoplay=1&mute=0" 
+      frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+    </iframe>`;
 }
   </script>
 

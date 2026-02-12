@@ -14,7 +14,7 @@
 
       <div class="buttons">
         <button class="btnNo">No </button>
-        <button class="btnYes">Yes </button>
+        <button onclick="document.location='message.html'" class="btnYes">Yes </button>
       </div>
   </div>
 </div>
@@ -29,15 +29,16 @@ noBtn.addEventListener("mouseover", function () {
   if (count < 3) {
     count++;
     
-    const maxX = window.innerWidth - noBtn.offsetWidth;
-    const maxY = window.innerHeight - noBtn.offsetHeight;
+     const btnWidth = noBtn.offsetWidth;
+    const btnHeight = noBtn.offsetHeight;
 
-    const moveX = Math.random() * maxX;
-    const moveY = Math.random() * maxY;
+    const maxX = window.innerWidth - btnWidth;
+    const maxY = window.innerHeight - btnHeight;
 
-    noBtn.style.position = "fixed";
-    noBtn.style.left = moveX + "px";
-    noBtn.style.top = moveY + "px";
+    const moveX = (Math.random() - 0.5) * maxX;
+    const moveY = (Math.random() - 0.5) * maxY;
+
+    noBtn.style.transform = `translate(${moveX}px, ${moveY}px)`;
   }
 });
 

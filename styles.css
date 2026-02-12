@@ -76,6 +76,7 @@ body {
 body.treason {
   background: red !important;
   background-image: none !important;
+  transition: transform 0.2s ease, background 0.3s;
 }
 
 .treason .center {

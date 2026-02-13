@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
   <title>I Love You</title>
   <link rel="stylesheet" href="styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
@@ -24,22 +24,40 @@
     let count = 0;
 const noBtn = document.querySelector(".btnNo");
 
-noBtn.addEventListener("mouseover", function () {
+["mouseover", "touchstart"].forEach(evt => {
+  noBtn.addEventListener(evt, function (e) {
+
   // Only move the button if count is less than 3
   if (count < 3) {
+    if(evt === "touchstart") e.preventDefault();
     count++;
     
-     const btnWidth = noBtn.offsetWidth;
-    const btnHeight = noBtn.offsetHeight;
+    const rect = noBtn.getBoundingClientRect();
+      const btnWidth = noBtn.offsetWidth;
+      const btnHeight = noBtn.offsetHeight;
 
-    const maxX = window.innerWidth - btnWidth;
-    const maxY = window.innerHeight - btnHeight;
+      // Calculate how much space is actually available around the button
+      // We add a 10px buffer so it doesn't touch the very edge
+      const availableLeft = -rect.left + 10;
+      const availableRight = window.innerWidth - rect.right - 10;
+      const availableTop = -rect.top + 10;
+      const availableBottom = window.innerHeight - rect.bottom - 10;
 
-    const moveX = (Math.random() - 0.5) * maxX;
-    const moveY = (Math.random() - 0.5) * maxY;
+      // Pick a random distance within the allowed range
+      const moveX = Math.random() * (availableRight - availableLeft) + availableLeft;
+      const moveY = Math.random() * (availableBottom - availableTop) + availableTop;
 
-    noBtn.style.transform = `translate(${moveX}px, ${moveY}px)`;
+      // Current translation + the new random delta
+      // We use getComputedStyle to keep track of previous jumps
+      const style = window.getComputedStyle(noBtn);
+      const matrix = new WebKitCSSMatrix(style.transform);
+      
+      const finalX = matrix.m41 + moveX;
+      const finalY = matrix.m42 + moveY;
+
+      noBtn.style.transform = `translate(${finalX}px, ${finalY}px)`;
   }
+});
 });
 
 // The "Final Trap" Click
@@ -61,11 +79,10 @@ function triggerTreason() {
   // Since they clicked the button, the browser allows sound!
   const videoID = "R3oSAVwcD4U";
   videoBox.innerHTML = `
-    <iframe 
-      width="560" height="315" 
-      src="https://www.youtube.com/embed/${videoID}?autoplay=1&mute=0" 
-      frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
-    </iframe>`;
+  <iframe 
+    src="https://www.youtube.com/embed/${videoID}?autoplay=1&mute=0" 
+    frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+  </iframe>`;
 }
   </script>
 

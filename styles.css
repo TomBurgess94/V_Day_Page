@@ -120,7 +120,7 @@ body {
     
     /* Your original styles */
     font-family: "Dancing Script", cursive;
-    font-size: 1.5rem; /* Using rem or px is often more stable than % for fonts */
+    font-size: 1.2rem; /* Using rem or px is often more stable than % for fonts */
     color: #4a2c2a; /* A dark brown often looks better on parchment than pure white */
 }
 

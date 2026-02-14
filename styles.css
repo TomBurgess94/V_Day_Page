@@ -91,7 +91,7 @@ body {
 
 .scroll-container {
     position: relative;
-    width: 60vh; /* Adjust this to make the scroll larger or smaller */
+    width: 90vh; /* Adjust this to make the scroll larger or smaller */
     height: 100vh;
     margin: 0 auto;
     /* max-width: 800px; */
@@ -108,10 +108,10 @@ body {
 
 .scroll-text {
     position: absolute;
-    top: 55%;
+    top: 46%;
     left: 50%;
     transform: translate(-50%, -50%); /* Perfectly centers the text on the scroll */
-    width: 60%; /* Keeps text from hitting the edges of the scroll image */
+    width: 50%; /* Keeps text from hitting the edges of the scroll image */
     height: 70%;
     display: flex;
     flex-direction: column;
@@ -120,7 +120,7 @@ body {
     
     /* Your original styles */
     font-family: "Dancing Script", cursive;
-    font-size: 3rem; /* Using rem or px is often more stable than % for fonts */
+    font-size: 1.5rem; /* Using rem or px is often more stable than % for fonts */
     color: #4a2c2a; /* A dark brown often looks better on parchment than pure white */
 }
 
@@ -284,4 +284,17 @@ main {
   .wedding-image2 { left: 2vw;  top: 55vh; }
   .dog-image      { left: 65vw; top: 60vh;}
   .face-image     { left: 5vw;  top: 85vh; }
+
+  .scroll-text{
+    width: 80% !important;   /* Widen the text area so font has room to grow */
+    height: auto !important;  /* Let the box grow with the text */
+    top: 50% !important;
+  }
+
+  .scroll-text p {
+    font-size: 5rem;
+    line-height: 1.2;            /* Keeps lines from overlapping */
+    margin: 0;
+    padding: 0 10px;
+  }
 }
